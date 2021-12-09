@@ -1,0 +1,35 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+  <p>{{ count }}</p>
+  
+  <!-- 
+    para passar o evento junto com outro parâmetro na função, usa-se a palavra
+    reservada junto com o cifrâo($event) 
+  -->
+  <button v-on:click="sum(5, $event)">+ 1</button>
+
+  <p v-on:mousemove="updateXY">Mouse X: {{ x }}</p>
+  <p v-on:mousemove="updateXY">Mouse y: {{ y }}</p>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      count: 0,
+      x: 0,
+      y: 0,
+    },
+    methods: {
+      sum(n, e) {
+        console.log(n, e)
+        this.count += n
+      },
+      updateXY(event) {
+        this.x = event.clientX
+        this.y = event.clientY
+      }
+    }
+  })
+</script>
