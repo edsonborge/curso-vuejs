@@ -1,0 +1,19 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+  <p>{{ titulo }}</p>
+  <!-- 
+    v-model: possibilita o 2-way data binding (dados no html alteram o 
+    javascript e vice versa) entre o template html e a instância Vue 
+  -->
+  <input type="text" v-model="titulo">
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      titulo: 'Propriedades reativas',
+    }
+  })
+</script>

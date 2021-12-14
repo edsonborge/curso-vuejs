@@ -1,0 +1,35 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+  <button v-on:click="aumentar">Aumentar</button>
+  <button v-on:click="contador2++">Aumentar 2</button> <!-- não tem relação com a função dentro do computed -->
+  <button v-on:click="diminuir">Diminuir</button>
+  <p>Contador: {{ contador }} | {{ contador2 }}</p>
+  <p>Resultado: {{ resultado }}</p> <!-- quando dentro do computed, a função é chamada como uma propriedade -->
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      contador: 0,
+      contador2: 0,
+    },
+    // dentro do computed é armazenada funções que precisam ser chamadas várias
+    // vezes. Fica em um cache sem precisar ser chamada várias vezes
+    computed: {
+      resultado() {
+        console.log('função dentro do "computed" chamada')
+        return this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5'
+      }
+    },
+    methods: {
+      aumentar() {
+        this.contador++
+      },
+      diminuir() {
+        this.contador--
+      },
+    }
+  })
+</script>
