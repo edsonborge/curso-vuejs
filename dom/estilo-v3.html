@@ -1,0 +1,63 @@
+<script src="https://unpkg.com/vue"></script>
+
+<style>
+  .caixas {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .demo {
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+  }
+
+  .c1 {
+    background-color: red;
+  }
+
+  .c2 {
+    background-color: green;
+  }
+
+  .c3 {
+    background-color: blue;
+  }
+
+  .girar {
+    transform: rotate(45deg);
+  }
+</style>
+
+<div id="app">
+  <div class="caixas">
+    <div class="demo" :class="applyStyle" @click="applyClass = !applyClass"></div>
+    <div class="demo"></div>
+    <!-- usando sintaxe de array para adicionar mais de uma classe pelo vue -->
+    <div class="demo" :class="[classCss, {girar: aplicarGirar}]"></div>
+  </div>
+
+  <hr>
+
+  <!-- Aplicando classe pelo input através do 2-way data binding -->
+  <input type="text" v-model='classCss'>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      applyClass: false,
+      classCss: 'c1',
+      aplicarGirar: true,
+    },
+    computed: {
+      applyStyle() {
+        return {
+          c1: this.applyClass,
+          c2: !this.applyClass,
+        }
+      }
+    }
+  })
+</script>
